@@ -1,0 +1,29 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Logo Vince Hotel</title>
+  <desc id="desc">Monogramme VH bleu premium avec accent dore et symbole de sejour.</desc>
+  <defs>
+    <linearGradient id="sky" x1="80" y1="56" x2="432" y2="456" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#071F4D"/>
+      <stop offset="0.42" stop-color="#1267E3"/>
+      <stop offset="1" stop-color="#35A7FF"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="159" y1="96" x2="406" y2="392" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFE7A8"/>
+      <stop offset="0.46" stop-color="#F4A62A"/>
+      <stop offset="1" stop-color="#E95B5F"/>
+    </linearGradient>
+    <filter id="shadow" x="28" y="30" width="456" height="456" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="24" stdDeviation="24" flood-color="#071F4D" flood-opacity="0.24"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#shadow)">
+    <rect x="56" y="52" width="400" height="400" rx="116" fill="url(#sky)"/>
+    <path d="M116 321C159 274 194 249 226 249C260 249 288 282 326 282C356 282 381 264 402 239" stroke="white" stroke-opacity="0.25" stroke-width="32" stroke-linecap="round"/>
+    <path d="M108 366C145 330 185 312 229 312C281 312 315 342 366 342C387 342 407 337 428 326" stroke="white" stroke-opacity="0.18" stroke-width="22" stroke-linecap="round"/>
+    <text x="126" y="320" fill="white" font-family="Inter, Arial, Helvetica, sans-serif" font-size="184" font-weight="900">V</text>
+    <text x="278" y="320" fill="white" font-family="Inter, Arial, Helvetica, sans-serif" font-size="184" font-weight="900">H</text>
+    <circle cx="398" cy="118" r="44" fill="url(#gold)"/>
+    <path d="M398 92L405 111L425 118L405 125L398 144L391 125L371 118L391 111L398 92Z" fill="white"/>
+  </g>
+</svg>
