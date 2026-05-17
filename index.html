@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vince Hotel | Réservations premium</title>
+    <meta
+      name="description"
+      content="Vince Hotel, plateforme premium de réservation d'hôtels avec compte, espace hôte, favoris, paiement sécurisé et filtres avancés."
+    />
+    <link rel="icon" href="assets/vince-hotel-logo.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="site-header">
+        <a class="brand" href="#" aria-label="Vince Hotel accueil">
+          <img class="brand-logo" src="assets/vince-hotel-logo.svg" alt="" />
+          <span>
+            <strong>Vince Hotel</strong>
+            <small>réservations premium</small>
+          </span>
+        </a>
+
+        <nav class="main-nav" aria-label="Navigation principale">
+          <a href="#hotels">Hôtels</a>
+          <a href="#offers">Offres</a>
+          <a href="#club">Club Vince</a>
+          <button class="link-button" type="button" data-action="openHost">
+            Devenir hôte
+          </button>
+        </nav>
+
+        <div class="header-actions">
+          <button class="icon-button" type="button" data-action="openTrips" aria-label="Mes voyages" title="Mes voyages">
+            <i data-lucide="luggage"></i>
+          </button>
+          <button class="ghost-button" type="button" data-action="openAuth" data-mode="login">
+            Connexion
+          </button>
+          <button class="primary-button" type="button" data-action="openAuth" data-mode="register">
+            Créer un compte
+          </button>
+        </div>
+      </header>
+
+      <main>
+        <section class="booking-console" aria-label="Réserver un hôtel">
+          <div class="console-copy">
+            <p class="eyebrow">Vince Hotel Signature</p>
+            <h1>Trouvez un séjour haut de gamme, réservez en quelques clics.</h1>
+            <p>
+              Hôtels, villas, resorts, appart-hôtels et suites business avec paiement sécurisé, espace compte,
+              favoris, messagerie et parcours hôte.
+            </p>
+          </div>
+
+          <form class="search-form" id="searchForm">
+            <label class="field wide">
+              <span>Destination ou hôtel</span>
+              <i data-lucide="search"></i>
+              <input id="destinationInput" type="search" placeholder="Paris, Bali, Santorini..." autocomplete="off" />
+            </label>
+            <label class="field">
+              <span>Arrivée</span>
+              <i data-lucide="calendar-days"></i>
+              <input id="checkInInput" type="date" />
+            </label>
+            <label class="field">
+              <span>Départ</span>
+              <i data-lucide="calendar-check"></i>
+              <input id="checkOutInput" type="date" />
+            </label>
+            <label class="field compact">
+              <span>Voyageurs</span>
+              <i data-lucide="users"></i>
+              <input id="guestsInput" type="number" min="1" max="14" value="2" />
+            </label>
+            <button class="search-button" type="submit">
+              <i data-lucide="sparkles"></i>
+              Rechercher
+            </button>
+          </form>
+
+          <div class="quick-picks" aria-label="Types de séjour">
+            <button class="pill is-active" type="button" data-action="quickType" data-type="all">Tout</button>
+            <button class="pill" type="button" data-action="quickType" data-type="Hotel">Hôtels</button>
+            <button class="pill" type="button" data-action="quickType" data-type="Villa">Villas</button>
+            <button class="pill" type="button" data-action="quickType" data-type="Resort">Resorts</button>
+            <button class="pill" type="button" data-action="quickType" data-type="Appart-hôtel">Appart-hôtels</button>
+            <button class="pill" type="button" data-action="quickAmenity" data-amenity="Piscine">Piscine</button>
+            <button class="pill" type="button" data-action="quickAmenity" data-amenity="Spa">Spa</button>
+            <button class="pill" type="button" data-action="quickAmenity" data-amenity="Vue mer">Vue mer</button>
+          </div>
+        </section>
+
+        <section class="trust-strip" aria-label="Avantages">
+          <div>
+            <strong>42 000+</strong>
+            <span>séjours réservés</span>
+          </div>
+          <div>
+            <strong>4,8/5</strong>
+            <span>note moyenne</span>
+          </div>
+          <div>
+            <strong>0 €</strong>
+            <span>frais cachés</span>
+          </div>
+          <div>
+            <strong>24/7</strong>
+            <span>conciergerie premium</span>
+          </div>
+        </section>
+
+        <section class="workspace" id="hotels">
+          <aside class="filter-panel" aria-label="Filtres avancés">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Affiner</p>
+                <h2>Filtres</h2>
+              </div>
+              <button class="text-button" type="button" data-action="resetFilters">Réinitialiser</button>
+            </div>
+
+            <label class="range-field">
+              <span>Budget par nuit</span>
+              <strong><span id="budgetValue">420</span> € max</strong>
+              <input id="budgetInput" type="range" min="90" max="900" step="10" value="420" />
+            </label>
+
+            <div class="filter-group">
+              <span class="filter-title">Type</span>
+              <label><input type="radio" name="propertyType" value="all" checked /> Tout</label>
+              <label><input type="radio" name="propertyType" value="Hotel" /> Hôtel</label>
+              <label><input type="radio" name="propertyType" value="Villa" /> Villa</label>
+              <label><input type="radio" name="propertyType" value="Resort" /> Resort</label>
+              <label><input type="radio" name="propertyType" value="Appart-hôtel" /> Appart-hôtel</label>
+            </div>
+
+            <div class="filter-group">
+              <span class="filter-title">Services</span>
+              <label><input type="checkbox" name="amenity" value="Petit-déjeuner" /> Petit-déjeuner</label>
+              <label><input type="checkbox" name="amenity" value="Spa" /> Spa</label>
+              <label><input type="checkbox" name="amenity" value="Piscine" /> Piscine</label>
+              <label><input type="checkbox" name="amenity" value="Parking" /> Parking</label>
+              <label><input type="checkbox" name="amenity" value="Vue mer" /> Vue mer</label>
+              <label><input type="checkbox" name="amenity" value="Animaux acceptés" /> Animaux acceptés</label>
+            </div>
+
+            <div class="filter-group">
+              <span class="filter-title">Options pro</span>
+              <label><input id="instantInput" type="checkbox" /> Réservation instantanée</label>
+              <label><input id="refundableInput" type="checkbox" /> Annulation flexible</label>
+              <label><input id="workspaceInput" type="checkbox" /> Espace travail</label>
+            </div>
+
+            <label class="select-field">
+              <span>Note minimum</span>
+              <select id="ratingInput">
+                <option value="0">Toutes les notes</option>
+                <option value="4.2">4,2+</option>
+                <option value="4.5" selected>4,5+</option>
+                <option value="4.7">4,7+</option>
+                <option value="4.9">4,9</option>
+              </select>
+            </label>
+          </aside>
+
+          <section class="results-section" aria-live="polite">
+            <div class="results-toolbar">
+              <div>
+                <p class="eyebrow">Disponibilités</p>
+                <h2><span id="resultCount">0</span> séjours trouvés</h2>
+              </div>
+              <div class="toolbar-actions">
+                <button class="ghost-button" type="button" data-action="openCompare">
+                  <i data-lucide="columns-3"></i>
+                  Comparer <span id="compareCount">0</span>
+                </button>
+                <label class="sort-field">
+                  <span>Trier</span>
+                  <select id="sortInput">
+                    <option value="recommended">Recommandés</option>
+                    <option value="priceAsc">Prix croissant</option>
+                    <option value="ratingDesc">Meilleures notes</option>
+                    <option value="popular">Plus populaires</option>
+                  </select>
+                </label>
+              </div>
+            </div>
+
+            <div class="active-filters" id="activeFilters"></div>
+            <div class="hotel-grid" id="hotelGrid"></div>
+          </section>
+
+          <aside class="travel-panel" aria-label="Carte et services">
+            <section class="map-panel">
+              <div class="panel-heading">
+                <div>
+                  <p class="eyebrow">Carte</p>
+                  <h2>Prix proches</h2>
+                </div>
+                <button class="icon-button" type="button" data-action="refreshMap" aria-label="Rafraîchir la carte" title="Rafraîchir">
+                  <i data-lucide="rotate-cw"></i>
+                </button>
+              </div>
+              <div class="fake-map" id="mapPins"></div>
+            </section>
+
+            <section class="service-panel" id="offers">
+              <p class="eyebrow">Services inclus</p>
+              <h2>Tout le parcours</h2>
+              <ul class="feature-list">
+                <li><i data-lucide="shield-check"></i> Paiement sécurisé avec reçu et confirmation</li>
+                <li><i data-lucide="message-circle"></i> Messagerie voyageur / hôte intégrée</li>
+                <li><i data-lucide="badge-percent"></i> Code promo, taxes et frais détaillés</li>
+                <li><i data-lucide="key-round"></i> Check-in digital et règles de maison</li>
+                <li><i data-lucide="heart-handshake"></i> Favoris, comparateur et programme fidélité</li>
+              </ul>
+              <button class="secondary-button full" type="button" data-action="openConcierge">
+                <i data-lucide="bot"></i>
+                Ouvrir la conciergerie
+              </button>
+            </section>
+
+            <section class="club-panel" id="club">
+              <p class="eyebrow">Club Vince</p>
+              <h2>Niveau Horizon</h2>
+              <div class="progress-line"><span style="width: 72%"></span></div>
+              <p>Encore 2 réservations pour débloquer les upgrades suite, late checkout et support prioritaire.</p>
+            </section>
+          </aside>
+        </section>
+      </main>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <div class="modal-layer" id="modalLayer" aria-hidden="true"></div>
+  </body>
+</html>
